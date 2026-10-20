@@ -1,0 +1,24 @@
+{
+  "name": "sifat-dropshipping-fullstack",
+  "version": "2.0.0",
+  "description": "Full-Stack Animated E-Commerce & Dropshipping Web Application for Jack Sifat Khan (SifatDropShipping)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "dropshipping",
+    "ecommerce",
+    "bangladesh",
+    "bdt",
+    "jack-sifat-khan",
+    "sifatdropshipping"
+  ],
+  "author": "Jack Sifat Khan",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2"
+  }
+}

@@ -1,0 +1,158 @@
+/* ==========================================================================
+   SifatDropShipping - Ultra Animated Stylesheet
+   Founder & CEO: Jack Sifat Khan
+   ========================================================================== */
+
+:root {
+  --brand-primary: #2563eb;
+  --brand-indigo: #4f46e5;
+  --brand-emerald: #10b981;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: 'Plus Jakarta Sans', 'Hind Siliguri', sans-serif;
+}
+
+/* Custom Animated Mesh Background Blobs */
+@keyframes floatBlob {
+  0%, 100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  33% {
+    transform: translate(35px, -45px) scale(1.12);
+  }
+  66% {
+    transform: translate(-25px, 25px) scale(0.92);
+  }
+}
+
+.animate-blob {
+  animation: floatBlob 9s infinite ease-in-out;
+}
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+.animation-delay-4000 {
+  animation-delay: 4s;
+}
+
+/* Infinite Announcement Ticker */
+@keyframes marqueeSlide {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marqueeSlide 28s linear infinite;
+}
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* Floating Hero Profile Image & Badges */
+@keyframes gentleFloat {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-12px) rotate(1deg); }
+}
+
+.animate-float {
+  animation: gentleFloat 5s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.5), 0 20px 50px -10px rgba(30, 64, 175, 0.35);
+  }
+  50% {
+    box-shadow: 0 0 0 14px rgba(37, 99, 235, 0), 0 25px 60px -5px rgba(79, 70, 229, 0.5);
+  }
+}
+
+.founder-frame-glow {
+  animation: pulseGlow 3.5s infinite;
+}
+
+/* Shimmer Text Effect for Jack Sifat Khan */
+@keyframes textShimmer {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.shimmer-name {
+  background: linear-gradient(90deg, #1d4ed8, #7c3aed, #059669, #1d4ed8);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textShimmer 5s ease infinite;
+}
+
+/* Scroll Reveal Animations */
+.reveal-up {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-up.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 3D Interactive Tilt Card */
+.product-card-3d {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
+  will-change: transform;
+}
+.product-card-3d:hover {
+  transform: translateY(-8px) scale(1.015);
+  box-shadow: 0 22px 45px -12px rgba(37, 99, 235, 0.18);
+}
+
+/* Button Ripple & Shine */
+.btn-shine {
+  position: relative;
+  overflow: hidden;
+}
+.btn-shine::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 40%;
+  height: 200%;
+  background: rgba(255, 255, 255, 0.35);
+  transform: rotate(30deg);
+  transition: all 0.65s ease;
+}
+.btn-shine:hover::after {
+  left: 130%;
+}
+
+/* Flying Cart Clone Animation */
+.flying-img {
+  position: fixed;
+  z-index: 9999;
+  pointer-events: none;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 10px 25px rgba(37, 99, 235, 0.5);
+  transition: all 0.75s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}

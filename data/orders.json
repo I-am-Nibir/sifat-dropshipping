@@ -1,0 +1,68 @@
+[
+  {
+    "orderId": "JSK-2026-101",
+    "customerName": "Tanvir Ahmed",
+    "phone": "01711-889900",
+    "city": "Dhaka",
+    "address": "House 14, Road 7, Dhanmondi, Dhaka",
+    "items": [
+      {
+        "id": 1,
+        "title": "ANC Pro Max Wireless Earbuds (Sifat Special Edition)",
+        "qty": 1,
+        "price": 1850
+      }
+    ],
+    "subtotal": 1850,
+    "discount": 0,
+    "shipping": 60,
+    "total": 1910,
+    "status": "Delivered",
+    "step": 4,
+    "createdAt": "2026-10-18 14:20"
+  },
+  {
+    "orderId": "JSK-2026-102",
+    "customerName": "Nusrat Jahan",
+    "phone": "01822-334455",
+    "city": "Chattogram",
+    "address": "Nasirabad Housing Society, Chattogram",
+    "items": [
+      {
+        "id": 3,
+        "title": "Signature Royal Navy Casual Oxford Shirt",
+        "qty": 2,
+        "price": 1290
+      }
+    ],
+    "subtotal": 2580,
+    "discount": 258,
+    "shipping": 120,
+    "total": 2442,
+    "status": "Out for Delivery",
+    "step": 3,
+    "createdAt": "2026-10-19 19:45"
+  },
+  {
+    "orderId": "JSK-2026-103",
+    "customerName": "Rafiqul Islam",
+    "phone": "01933-776655",
+    "city": "Dhaka",
+    "address": "Sector 11, Uttara, Dhaka",
+    "items": [
+      {
+        "id": 2,
+        "title": "Ultra-Slim Titanium Smart Watch Series X",
+        "qty": 1,
+        "price": 2490
+      }
+    ],
+    "subtotal": 2490,
+    "discount": 0,
+    "shipping": 60,
+    "total": 2550,
+    "status": "Shipped",
+    "step": 2,
+    "createdAt": "2026-10-20 11:10"
+  }
+]

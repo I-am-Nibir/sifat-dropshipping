@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SifatDropShipping | Official Store by Jack Sifat Khan (BDT ৳)</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Plus Jakarta Sans & Hind Siliguri -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- FontAwesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <!-- Custom Animations Stylesheet -->
+  <link rel="stylesheet" href="css/animations.css" />
+</head>
+<body class="bg-slate-50 text-slate-900 antialiased selection:bg-blue-600 selection:text-white overflow-x-hidden">
+
+  <!-- Hidden File Input if Jack Sifat Khan wants to swap photo live -->
+  <input type="file" id="founder-photo-input" accept="image/*" class="hidden" onchange="handleFounderPhotoUpload(event)" />
+
+  <!-- Top Infinite Animated Marquee Bar -->
+  <div class="bg-slate-950 text-white py-2 overflow-hidden border-b border-slate-800 text-xs font-semibold">
+    <div class="marquee-track">
+      <div class="flex items-center gap-10 px-6">
+        <span><i class="fa-solid fa-crown text-amber-400 mr-1.5"></i>WELCOME TO <strong>SIFATDROPSHIPPING</strong> — FOUNDED & CURATED BY <strong>JACK SIFAT KHAN</strong></span>
+        <span><i class="fa-solid fa-bolt text-emerald-400 mr-1.5"></i>USE CODE <strong class="text-amber-300">SIFAT10</strong> OR <strong class="text-amber-300">SAVE10</strong> FOR INSTANT 10% OFF IN BDT (৳)</span>
+        <span><i class="fa-solid fa-truck-fast text-blue-400 mr-1.5"></i>CASH ON DELIVERY ACROSS BANGLADESH (INSIDE DHAKA ৳60 | OUTSIDE DHAKA ৳120)</span>
+        <span><i class="fa-solid fa-shield-halved text-purple-400 mr-1.5"></i>100% QUALITY VERIFIED BY JACK SIFAT KHAN</span>
+      </div>
+      <div class="flex items-center gap-10 px-6">
+        <span><i class="fa-solid fa-crown text-amber-400 mr-1.5"></i>WELCOME TO <strong>SIFATDROPSHIPPING</strong> — FOUNDED & CURATED BY <strong>JACK SIFAT KHAN</strong></span>
+        <span><i class="fa-solid fa-bolt text-emerald-400 mr-1.5"></i>USE CODE <strong class="text-amber-300">SIFAT10</strong> OR <strong class="text-amber-300">SAVE10</strong> FOR INSTANT 10% OFF IN BDT (৳)</span>
+        <span><i class="fa-solid fa-truck-fast text-blue-400 mr-1.5"></i>CASH ON DELIVERY ACROSS BANGLADESH (INSIDE DHAKA ৳60 | OUTSIDE DHAKA ৳120)</span>
+        <span><i class="fa-solid fa-shield-halved text-purple-400 mr-1.5"></i>100% QUALITY VERIFIED BY JACK SIFAT KHAN</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sticky Glassmorphism Navigation Header -->
+  <header class="sticky top-0 z-40 bg-white/85 backdrop-blur-xl border-b border-slate-200/80 transition-all">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+      <!-- Brand Logo + Founder Avatar -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="relative">
+          <img src="assets/images/sifat.jpg" alt="Jack Sifat Khan"
+            class="jsk-founder-photo w-12 h-12 rounded-2xl object-cover ring-2 ring-blue-600 shadow-md group-hover:scale-105 transition" />
+          <span class="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-emerald-500 ring-2 ring-white flex items-center justify-center text-[8px] text-white">
+            <i class="fa-solid fa-check"></i>
+          </span>
+        </div>
+        <div>
+          <div class="flex items-center gap-1.5">
+            <span class="text-xl font-extrabold tracking-tight text-slate-900">Sifat<span class="text-blue-600">DropShipping</span></span>
+          </div>
+          <p class="text-[11px] font-bold text-slate-500">By <span class="text-blue-600">Jack Sifat Khan</span></p>
+        </div>
+      </a>
+
+      <!-- Search Bar (Desktop) -->
+      <div class="hidden md:flex flex-1 max-w-md mx-4">
+        <div class="relative w-full">
+          <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+          <input id="search-input" type="text" oninput="handleSearch(this.value)"
+            placeholder="Search Jack Sifat Khan's curated gadgets, fashion..."
+            class="w-full pl-11 pr-4 py-2.5 rounded-full bg-slate-100/90 border border-transparent focus:border-blue-500 focus:bg-white focus:outline-none text-sm transition" />
+        </div>
+      </div>
+
+      <!-- Navigation Links & Live Cart Button -->
+      <nav class="flex items-center gap-2 sm:gap-5">
+        <a href="#products-section" class="hidden lg:inline-block text-sm font-bold text-slate-700 hover:text-blue-600 transition">Products</a>
+        <a href="#founder-section" class="hidden lg:inline-block text-sm font-bold text-slate-700 hover:text-blue-600 transition">Founder</a>
+        <a href="#tracking-section" class="hidden sm:inline-flex items-center gap-1.5 text-sm font-bold text-slate-700 hover:text-blue-600 transition">
+          <i class="fa-solid fa-truck-fast text-blue-600"></i> Track Order
+        </a>
+        <a href="#dashboard-section" class="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full text-xs font-extrabold bg-slate-100 hover:bg-blue-50 text-slate-800 hover:text-blue-600 transition">
+          <i class="fa-solid fa-chart-pie text-indigo-600"></i> Merchant Portal
+        </a>
+
+        <!-- Live Cart Button -->
+        <button id="header-cart-btn" onclick="toggleCartDrawer(true)"
+          class="relative bg-slate-900 hover:bg-blue-600 text-white px-4 py-2.5 rounded-full font-bold text-xs sm:text-sm flex items-center gap-2 shadow-lg shadow-slate-900/15 transition-all duration-300">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <span class="hidden sm:inline">Cart</span>
+          <span class="cart-badge-count px-2 py-0.5 rounded-full bg-blue-500 text-white text-xs font-extrabold">0</span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Ultra-Animated Hero Section featuring Jack Sifat Khan -->
+  <section class="relative overflow-hidden py-14 lg:py-20 bg-gradient-to-b from-blue-50/70 via-white to-slate-50">
+    <!-- Animated Floating Mesh Blobs -->
+    <div class="absolute top-10 left-10 w-72 h-72 bg-blue-400/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob pointer-events-none"></div>
+    <div class="absolute top-20 right-16 w-80 h-80 bg-indigo-400/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000 pointer-events-none"></div>
+    <div class="absolute -bottom-10 left-1/3 w-72 h-72 bg-emerald-400/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-4000 pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid lg:grid-cols-12 gap-12 items-center">
+
+        <!-- Left Column: High-Converting Copy -->
+        <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+          <div class="inline-flex flex-wrap items-center gap-2 px-4 py-1.5 rounded-full bg-blue-100/90 border border-blue-200 text-blue-800 text-xs font-extrabold">
+            <span class="w-2 h-2 rounded-full bg-blue-600 animate-ping"></span>
+            <span>OFFICIAL DROPSHIPPING STORE BY JACK SIFAT KHAN</span>
+          </div>
+
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-[1.12]">
+            Elevate Your Lifestyle with <span class="shimmer-name">Jack Sifat Khan</span>
+          </h1>
+
+          <!-- Animated Typewriter Line -->
+          <div class="h-7 flex items-center justify-center lg:justify-start">
+            <span class="text-base sm:text-lg font-bold text-blue-600" id="typewriter-text"></span>
+            <span class="w-0.5 h-5 bg-blue-600 animate-pulse ml-1"></span>
+          </div>
+
+          <p class="text-slate-600 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+            Welcome to <strong>SifatDropShipping</strong>. Every gadget, fashion piece, and lifestyle essential is personally tested and hand-selected by Founder &amp; CEO <strong>Jack Sifat Khan</strong>—with instant pricing in Bangladeshi Taka (<strong>৳</strong>) and 100% Cash on Delivery.
+          </p>
+
+          <!-- Dynamic CTA Buttons -->
+          <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
+            <a href="#products-section"
+              class="btn-shine px-8 py-4 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-extrabold text-sm shadow-xl shadow-blue-600/30 hover:scale-105 transition flex items-center gap-2.5">
+              <i class="fa-solid fa-fire"></i> Shop Sifat's Collection
+            </a>
+            <a href="#tracking-section"
+              class="px-7 py-4 rounded-2xl bg-white hover:bg-slate-100 text-slate-800 font-bold text-sm border border-slate-200 shadow-sm transition flex items-center gap-2">
+              <i class="fa-solid fa-location-crosshairs text-blue-600"></i> Live Order Tracker
+            </a>
+          </div>
+
+          <!-- Trust Metrics -->
+          <div class="pt-6 grid grid-cols-3 gap-4 max-w-lg mx-auto lg:mx-0 border-t border-slate-200/80">
+            <div>
+              <p class="text-2xl sm:text-3xl font-extrabold text-slate-900">18,500+</p>
+              <p class="text-xs font-semibold text-slate-500">Happy BD Customers</p>
+            </div>
+            <div>
+              <p class="text-2xl sm:text-3xl font-extrabold text-blue-600">64 Districts</p>
+              <p class="text-xs font-semibold text-slate-500">Fast Cash on Delivery</p>
+            </div>
+            <div>
+              <p class="text-2xl sm:text-3xl font-extrabold text-emerald-600">4.9 ★</p>
+              <p class="text-xs font-semibold text-slate-500">Founder Verified Rating</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Animated 3D Founder Spotlight Card with Jack Sifat Khan's Photo -->
+        <div class="lg:col-span-5 flex justify-center">
+          <div class="relative w-full max-w-md animate-float">
+            <!-- Decorative Glow Ring -->
+            <div class="absolute -inset-2 rounded-[2.5rem] bg-gradient-to-tr from-blue-600 via-indigo-500 to-emerald-400 opacity-30 blur-xl"></div>
+
+            <div class="relative bg-white rounded-[2.2rem] p-4 shadow-2xl border border-slate-100 founder-frame-glow">
+              <div class="relative h-[420px] rounded-[1.8rem] overflow-hidden bg-slate-900">
+                <img src="assets/images/sifat.jpg" alt="Jack Sifat Khan - Founder & CEO of SifatDropShipping"
+                  class="jsk-founder-photo w-full h-full object-cover object-top hover:scale-105 transition-transform duration-700" />
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-900/20 to-transparent"></div>
+
+                <!-- Top Right Verified Founder Pill -->
+                <div class="absolute top-4 right-4 bg-white/95 backdrop-blur-md px-3.5 py-1.5 rounded-full shadow-lg flex items-center gap-1.5">
+                  <i class="fa-solid fa-circle-check text-blue-600 text-sm"></i>
+                  <span class="text-xs font-extrabold text-slate-900">Verified Founder</span>
+                </div>
+
+                <!-- Bottom Info Overlay -->
+                <div class="absolute bottom-5 left-5 right-5 text-white">
+                  <span class="px-3 py-1 rounded-full bg-blue-600/90 text-[11px] font-extrabold uppercase tracking-wider">
+                    Founder &amp; CEO • SifatDropShipping
+                  </span>
+                  <h2 class="text-2xl font-extrabold mt-2 flex items-center gap-2">
+                    Jack Sifat Khan
+                    <i class="fa-solid fa-crown text-amber-400 text-lg"></i>
+                  </h2>
+                  <p class="text-xs text-slate-200 mt-1">
+                    "Every product on SifatDropShipping carries my personal guarantee of authenticity and fast delivery."
+                  </p>
+                  <div class="mt-3 flex items-center justify-between">
+                    <span class="text-[11px] text-emerald-300 font-bold"><i class="fa-solid fa-bolt mr-1"></i>Dhaka, Bangladesh</span>
+                    <button onclick="document.getElementById('founder-photo-input').click()"
+                      class="text-[11px] bg-white/20 hover:bg-white/30 px-3 py-1 rounded-full font-bold backdrop-blur-sm transition">
+                      <i class="fa-solid fa-camera mr-1"></i>Change Photo
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Category Filter, Search & Price Sorting Section -->
+  <section id="products-section" class="py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+      <div>
+        <span class="text-xs font-extrabold uppercase tracking-widest text-blue-600">JACK SIFAT KHAN'S CATALOG</span>
+        <h2 class="text-3xl font-extrabold text-slate-900 mt-1">Trending Dropshipping Deals (৳)</h2>
+        <p id="product-count-label" class="text-xs font-semibold text-slate-500 mt-1">Loading curated products...</p>
+      </div>
+
+      <!-- Sort Dropdown -->
+      <div class="flex items-center gap-3">
+        <label class="text-xs font-bold text-slate-500">Sort By:</label>
+        <select onchange="handleSort(this.value)"
+          class="px-4 py-2.5 rounded-2xl bg-white border border-slate-200 text-xs font-bold text-slate-800 focus:outline-none focus:border-blue-600 shadow-sm">
+          <option value="featured">Featured (Jack Sifat's Picks)</option>
+          <option value="price-asc">Price: Low to High (৳)</option>
+          <option value="price-desc">Price: High to Low (৳)</option>
+          <option value="rating">Top Customer Rated (★)</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Category Pills -->
+    <div id="category-pills" class="flex items-center gap-2.5 overflow-x-auto pb-4 mb-6"></div>
+
+    <!-- Product Grid -->
+    <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+  </section>
+
+  <!-- Dedicated Founder Spotlight Banner -->
+  <section id="founder-section" class="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal-up">
+    <div class="rounded-[2.5rem] bg-gradient-to-r from-slate-900 via-blue-950 to-indigo-950 text-white p-8 md:p-12 shadow-2xl relative overflow-hidden">
+      <div class="grid md:grid-cols-12 gap-8 items-center relative z-10">
+        <div class="md:col-span-4 flex justify-center">
+          <img src="assets/images/sifat.jpg" alt="Jack Sifat Khan"
+            class="jsk-founder-photo w-56 h-64 md:w-64 md:h-72 rounded-3xl object-cover object-top ring-4 ring-blue-500/50 shadow-2xl" />
+        </div>
+        <div class="md:col-span-8 space-y-4">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-500/20 border border-blue-400/30 text-blue-300 text-xs font-bold">
+            <i class="fa-solid fa-award"></i> MEET THE VISIONARY BEHIND SIFATDROPSHIPPING
+          </div>
+          <h3 class="text-3xl md:text-4xl font-extrabold">Jack Sifat Khan's Personal Quality Guarantee</h3>
+          <p class="text-slate-300 text-sm md:text-base leading-relaxed">
+            "When I started <strong>SifatDropShipping</strong>, my mission was simple: eliminate low-quality replicas and bring global trending gadgets, fashion, and lifestyle essentials directly to customers in Bangladesh at honest BDT (৳) prices. Enjoy 7-day easy replacement and zero-risk Cash on Delivery."
+          </p>
+          <div class="pt-2 flex flex-wrap items-center gap-6">
+            <div>
+              <p class="text-lg font-extrabold text-white">Jack Sifat Khan</p>
+              <p class="text-xs text-blue-400 font-semibold">Founder &amp; Managing Director, SifatDropShipping</p>
+            </div>
+            <span class="px-4 py-2 rounded-xl bg-white/10 text-xs font-bold text-emerald-300 border border-white/10">
+              <i class="fa-solid fa-ticket mr-1.5"></i>Founder Promo Code: <strong>SIFAT10</strong> (10% OFF)
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Live Order Tracking Simulator Section -->
+  <section id="tracking-section" class="py-14 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 reveal-up">
+    <div class="bg-white rounded-[2.2rem] p-8 md:p-10 border border-slate-200/80 shadow-xl">
+      <div class="text-center max-w-2xl mx-auto">
+        <span class="px-3.5 py-1 rounded-full bg-blue-50 text-blue-600 text-xs font-extrabold uppercase tracking-wider">
+          <i class="fa-solid fa-satellite-dish mr-1"></i> Real-Time Logistics
+        </span>
+        <h2 class="text-3xl font-extrabold text-slate-900 mt-2">Live Order Tracking Simulator</h2>
+        <p class="text-slate-500 text-sm mt-1">
+          Enter your Order ID below (try <strong class="text-slate-800">JSK-2026-101</strong>, <strong class="text-slate-800">JSK-2026-102</strong>, or any new order you place).
+        </p>
+      </div>
+
+      <div class="mt-6 flex flex-col sm:flex-row gap-3 max-w-xl mx-auto">
+        <input id="track-order-input" type="text" value="JSK-2026-102"
+          placeholder="Enter Order ID (e.g. JSK-2026-101)"
+          class="flex-1 px-5 py-3.5 rounded-2xl bg-slate-100 border border-slate-200 font-bold text-sm focus:bg-white focus:border-blue-600 focus:outline-none" />
+        <button onclick="trackOrderNow()"
+          class="btn-shine px-7 py-3.5 rounded-2xl bg-blue-600 hover:bg-blue-700 text-white font-extrabold text-sm shadow-lg shadow-blue-600/25 transition">
+          <i class="fa-solid fa-magnifying-glass-location mr-1.5"></i> Track Status
+        </button>
+      </div>
+
+      <div id="tracking-result-box" class="mt-8 hidden"></div>
+    </div>
+  </section>
+
+  <!-- Full-Stack Merchant Admin Dashboard Section -->
+  <section id="dashboard-section" class="py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal-up">
+    <div class="bg-white rounded-[2.2rem] p-6 md:p-10 border border-slate-200 shadow-xl">
+      <div class="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-slate-100">
+        <div class="flex items-center gap-3.5">
+          <img src="assets/images/sifat.jpg" alt="Jack Sifat Khan"
+            class="jsk-founder-photo w-14 h-14 rounded-2xl object-cover ring-2 ring-blue-600" />
+          <div>
+            <div class="flex items-center gap-2">
+              <h2 class="text-2xl font-extrabold text-slate-900">Jack Sifat Khan — Merchant Dashboard</h2>
+              <span id="backend-status-badge"></span>
+            </div>
+            <p class="text-xs text-slate-500 font-semibold">Live Store Analytics, Order Status Controls &amp; Inventory Publisher</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- KPI Cards -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 my-7">
+        <div class="p-6 rounded-3xl bg-gradient-to-br from-blue-600 to-indigo-700 text-white shadow-lg">
+          <span class="text-xs font-bold uppercase tracking-wider text-blue-100">Total Store Revenue (BDT)</span>
+          <h3 id="dash-total-sales" class="text-3xl font-extrabold mt-2">৳0</h3>
+          <p class="text-[11px] text-blue-200 mt-1"><i class="fa-solid fa-arrow-trend-up mr-1"></i>+24.8% vs last week</p>
+        </div>
+        <div class="p-6 rounded-3xl bg-slate-900 text-white shadow-lg">
+          <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Total COD Orders</span>
+          <h3 id="dash-total-orders" class="text-3xl font-extrabold mt-2">0</h3>
+          <p class="text-[11px] text-emerald-400 mt-1"><i class="fa-solid fa-circle-check mr-1"></i>Synced with Live Tracker</p>
+        </div>
+        <div class="p-6 rounded-3xl bg-emerald-600 text-white shadow-lg">
+          <span class="text-xs font-bold uppercase tracking-wider text-emerald-100">Average Order Value</span>
+          <h3 id="dash-avg-order" class="text-3xl font-extrabold mt-2">৳0</h3>
+          <p class="text-[11px] text-emerald-100 mt-1"><i class="fa-solid fa-crown mr-1"></i>SifatDropShipping VIP Tier</p>
+        </div>
+      </div>
+
+      <div class="grid lg:grid-cols-12 gap-8">
+        <!-- Recent Orders Table with Live Status Dropdown -->
+        <div class="lg:col-span-8">
+          <h3 class="text-base font-extrabold text-slate-800 mb-3">Recent Orders (Change Status to Test Live Tracker)</h3>
+          <div class="overflow-x-auto rounded-2xl border border-slate-200">
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr class="bg-slate-100 text-[11px] font-extrabold uppercase text-slate-600">
+                  <th class="py-3 px-4">Order ID</th>
+                  <th class="py-3 px-4">Customer</th>
+                  <th class="py-3 px-4">City</th>
+                  <th class="py-3 px-4">Total (৳)</th>
+                  <th class="py-3 px-4">Live Status</th>
+                </tr>
+              </thead>
+              <tbody id="dash-orders-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Add New Product to Backend API -->
+        <div class="lg:col-span-4 bg-slate-50 p-5 rounded-3xl border border-slate-200/80">
+          <h3 class="text-base font-extrabold text-slate-800 mb-1">Add New Product to Store</h3>
+          <p class="text-xs text-slate-500 mb-4">Publishes directly to Node.js `/api/products` &amp; Product Grid.</p>
+          <form onsubmit="handleAddNewProduct(event)" class="space-y-3">
+            <input id="new-prod-title" type="text" required placeholder="Product Title"
+              class="w-full px-3.5 py-2.5 rounded-xl bg-white border border-slate-200 text-xs font-semibold" />
+            <div class="grid grid-cols-2 gap-2.5">
+              <select id="new-prod-cat" class="px-3 py-2.5 rounded-xl bg-white border border-slate-200 text-xs font-semibold">
+                <option value="Gadgets">Gadgets</option>
+                <option value="Fashion">Fashion</option>
+                <option value="Beauty">Beauty</option>
+                <option value="Home & Living">Home &amp; Living</option>
+                <option value="Fitness">Fitness</option>
+              </select>
+              <input id="new-prod-price" type="number" required placeholder="Price in ৳ (e.g. 1490)"
+                class="px-3.5 py-2.5 rounded-xl bg-white border border-slate-200 text-xs font-semibold" />
+            </div>
+            <input id="new-prod-orig" type="number" placeholder="Original Price in ৳ (e.g. 2200)"
+              class="w-full px-3.5 py-2.5 rounded-xl bg-white border border-slate-200 text-xs font-semibold" />
+            <input id="new-prod-img" type="url" placeholder="Image URL (optional)"
+              class="w-full px-3.5 py-2.5 rounded-xl bg-white border border-slate-200 text-xs font-semibold" />
+            <button type="submit"
+              class="w-full py-3 rounded-xl bg-slate-900 hover:bg-blue-600 text-white font-bold text-xs transition shadow-md">
+              <i class="fa-solid fa-plus mr-1"></i> Publish Product as Jack Sifat Khan
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide-Over Shopping Cart Drawer -->
+  <div id="cart-backdrop" onclick="toggleCartDrawer(false)" class="fixed inset-0 bg-slate-950/60 backdrop-blur-xs z-50 hidden"></div>
+  <aside id="cart-drawer"
+    class="fixed top-0 right-0 h-full w-full max-w-md bg-white z-50 shadow-2xl translate-x-full transition-transform duration-300 flex flex-col justify-between">
+    <!-- Top Header -->
+    <div class="p-5 border-b border-slate-100 flex items-center justify-between">
+      <div class="flex items-center gap-2.5">
+        <i class="fa-solid fa-bag-shopping text-blue-600 text-xl"></i>
+        <div>
+          <h3 class="font-extrabold text-slate-900 text-base">Your Shopping Bag</h3>
+          <p class="text-[11px] text-slate-400 font-semibold">SifatDropShipping • Curated by Jack Sifat Khan</p>
+        </div>
+      </div>
+      <button onclick="toggleCartDrawer(false)" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-600">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <!-- Cart Items Scrollable -->
+    <div id="cart-items-list" class="p-5 overflow-y-auto flex-1 space-y-3"></div>
+
+    <!-- Cart Footer Summary -->
+    <div class="p-5 border-t border-slate-100 bg-slate-50/70 space-y-4">
+      <!-- Promo Input -->
+      <div class="flex gap-2">
+        <input id="promo-input" type="text" placeholder="Promo code (SIFAT10 / SAVE10)"
+          class="flex-1 px-3.5 py-2 rounded-xl bg-white border border-slate-200 text-xs font-bold uppercase" />
+        <button onclick="applyPromoCode()" class="px-4 py-2 rounded-xl bg-slate-900 hover:bg-blue-600 text-white text-xs font-bold transition">
+          Apply
+        </button>
+      </div>
+
+      <!-- Delivery Zone Selector -->
+      <div class="grid grid-cols-2 gap-2 text-xs">
+        <button onclick="setShippingZone(60)" class="py-2 px-3 rounded-xl border border-slate-200 bg-white font-bold hover:border-blue-600">
+          Inside Dhaka (৳60)
+        </button>
+        <button onclick="setShippingZone(120)" class="py-2 px-3 rounded-xl border border-slate-200 bg-white font-bold hover:border-blue-600">
+          Outside Dhaka (৳120)
+        </button>
+      </div>
+
+      <!-- Totals Breakdown -->
+      <div class="space-y-1.5 text-xs border-t border-slate-200 pt-3">
+        <div class="flex justify-between text-slate-500"><span>Subtotal</span><span id="cart-subtotal" class="font-bold text-slate-800">৳0</span></div>
+        <div class="flex justify-between text-emerald-600"><span>Promo Discount</span><span id="cart-discount" class="font-bold">-৳0</span></div>
+        <div class="flex justify-between text-slate-500"><span>Delivery Charge</span><span id="cart-shipping" class="font-bold text-slate-800">৳60</span></div>
+        <div class="flex justify-between text-base font-extrabold text-slate-900 pt-1"><span>Total Payable</span><span id="cart-total" class="text-blue-600">৳0</span></div>
+      </div>
+
+      <button onclick="openCheckoutModal()"
+        class="btn-shine w-full py-3.5 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-extrabold text-sm shadow-lg shadow-blue-600/30">
+        Proceed to Cash on Delivery <i class="fa-solid fa-arrow-right ml-1"></i>
+      </button>
+    </div>
+  </aside>
+
+  <!-- Quick View Modal -->
+  <div id="quickview-modal" class="fixed inset-0 bg-slate-950/60 backdrop-blur-xs z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-2xl w-full p-6 md:p-8 relative shadow-2xl">
+      <button onclick="closeQuickView()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <div id="quickview-body"></div>
+    </div>
+  </div>
+
+  <!-- Cash on Delivery Checkout Modal -->
+  <div id="checkout-modal" class="fixed inset-0 bg-slate-950/60 backdrop-blur-xs z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-6 md:p-8 relative shadow-2xl">
+      <button onclick="closeCheckoutModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <div class="flex items-center gap-3 mb-4">
+        <img src="assets/images/sifat.jpg" class="jsk-founder-photo w-11 h-11 rounded-xl object-cover" />
+        <div>
+          <h3 class="text-xl font-extrabold text-slate-900">Cash on Delivery Checkout</h3>
+          <p class="text-xs text-slate-500">Pay only when the parcel reaches your doorstep</p>
+        </div>
+      </div>
+
+      <form onsubmit="submitCODOrder(event)" class="space-y-3.5">
+        <div>
+          <label class="text-xs font-bold text-slate-700">Full Name *</label>
+          <input id="cust-name" type="text" required placeholder="e.g. Rahim Uddin"
+            class="w-full mt-1 px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm" />
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="text-xs font-bold text-slate-700">Phone Number (BD) *</label>
+            <input id="cust-phone" type="tel" required placeholder="017XXXXXXXX"
+              class="w-full mt-1 px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm" />
+          </div>
+          <div>
+            <label class="text-xs font-bold text-slate-700">Delivery Area *</label>
+            <select id="cust-city" onchange="setShippingZone(this.value === 'Dhaka' ? 60 : 120)"
+              class="w-full mt-1 px-3 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm font-semibold">
+              <option value="Dhaka">Inside Dhaka (৳60)</option>
+              <option value="Chattogram">Chattogram (৳120)</option>
+              <option value="Sylhet">Sylhet (৳120)</option>
+              <option value="Rajshahi">Rajshahi (৳120)</option>
+              <option value="Khulna">Khulna (৳120)</option>
+              <option value="Other District">Other District (৳120)</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <label class="text-xs font-bold text-slate-700">Full Delivery Address *</label>
+          <textarea id="cust-address" rows="2" required placeholder="House, Road, Area, Landmark..."
+            class="w-full mt-1 px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm"></textarea>
+        </div>
+        <div class="p-4 rounded-2xl bg-blue-50 border border-blue-100 flex items-center justify-between">
+          <span class="text-xs font-bold text-blue-900">Total Cash on Delivery Payable:</span>
+          <span id="checkout-payable-total" class="text-xl font-extrabold text-blue-600">৳0</span>
+        </div>
+        <button type="submit"
+          class="btn-shine w-full py-3.5 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-sm shadow-lg shadow-emerald-600/25">
+          <i class="fa-solid fa-circle-check mr-1.5"></i> Confirm Order (Cash on Delivery)
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Order Confirmation Modal -->
+  <div id="order-success-modal" class="fixed inset-0 bg-slate-950/60 backdrop-blur-xs z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-md w-full p-8 text-center shadow-2xl">
+      <div class="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-3xl mx-auto mb-4">
+        <i class="fa-solid fa-check"></i>
+      </div>
+      <h3 class="text-2xl font-extrabold text-slate-900">Order Confirmed!</h3>
+      <p class="text-xs text-slate-500 mt-1">Thank you <strong id="confirmed-cust-name"></strong>! Jack Sifat Khan's team is packing your order.</p>
+      <div class="my-5 p-4 rounded-2xl bg-slate-100 border border-slate-200">
+        <span class="text-[11px] uppercase font-bold text-slate-400 block">Your Official Tracking ID</span>
+        <span id="confirmed-order-id" class="text-2xl font-extrabold text-blue-600">#JSK-2026-000</span>
+        <p class="text-xs font-bold text-slate-700 mt-1">COD Payable: <span id="confirmed-total"></span></p>
+      </div>
+      <button onclick="document.getElementById('order-success-modal').classList.add('hidden'); document.getElementById('tracking-section').scrollIntoView({behavior:'smooth'});"
+        class="w-full py-3 rounded-2xl bg-blue-600 text-white font-bold text-xs">
+        Track My Order Live
+      </button>
+    </div>
+  </div>
+
+  <!-- Live Social Proof Popup (Bottom Left) -->
+  <div id="live-sales-toast"
+    class="fixed bottom-5 left-5 z-40 bg-white/95 backdrop-blur-md border border-slate-200 shadow-2xl rounded-2xl p-3.5 flex items-center gap-3 max-w-xs translate-y-32 opacity-0 transition-all duration-500 pointer-events-none">
+    <img src="assets/images/sifat.jpg" class="jsk-founder-photo w-11 h-11 rounded-xl object-cover flex-shrink-0" />
+    <div class="min-w-0">
+      <p class="text-[10px] font-extrabold uppercase text-blue-600">Verified SifatDropShipping Order</p>
+      <p id="live-buyer-name" class="text-xs font-bold text-slate-800 truncate">Tanvir (Dhaka)</p>
+      <p id="live-buyer-item" class="text-[11px] text-slate-500 truncate">Just ordered ANC Pro Earbuds</p>
+    </div>
+  </div>
+
+  <!-- Toast Container (Top Right) -->
+  <div id="toast-container" class="fixed top-24 right-5 z-50 space-y-2"></div>
+
+  <!-- Footer -->
+  <footer class="bg-slate-950 text-slate-400 py-12 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+      <div class="flex items-center gap-3">
+        <img src="assets/images/sifat.jpg" class="jsk-founder-photo w-11 h-11 rounded-xl object-cover ring-2 ring-blue-500" />
+        <div>
+          <span class="text-white font-extrabold text-lg">SifatDropShipping</span>
+          <p class="text-xs text-slate-400">Founded &amp; Owned by <strong class="text-white">Jack Sifat Khan</strong> • All prices in BDT (৳)</p>
+        </div>
+      </div>
+      <p class="text-xs text-slate-500">© 2026 SifatDropShipping by Jack Sifat Khan. Full-Stack Node.js + Express Edition.</p>
+    </div>
+  </footer>
+
+  <!-- Main Frontend Application Script -->
+  <script src="js/app.js"></script>
+</body>
+</html>
