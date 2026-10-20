@@ -19,7 +19,14 @@
     "total": 1910,
     "status": "Delivered",
     "step": 4,
-    "createdAt": "2026-10-18 14:20"
+    "createdAt": "2026-10-18 14:20",
+    "source": "direct",
+    "vendorSource": "SifatDropShipping Store",
+    "vendorId": null,
+    "vendorOrderId": null,
+    "userId": null,
+    "email": null,
+    "paymentMethod": "Cash on Delivery"
   },
   {
     "orderId": "JSK-2026-102",
@@ -41,7 +48,14 @@
     "total": 2442,
     "status": "Out for Delivery",
     "step": 3,
-    "createdAt": "2026-10-19 19:45"
+    "createdAt": "2026-10-19 19:45",
+    "source": "direct",
+    "vendorSource": "SifatDropShipping Store",
+    "vendorId": null,
+    "vendorOrderId": null,
+    "userId": null,
+    "email": null,
+    "paymentMethod": "Cash on Delivery"
   },
   {
     "orderId": "JSK-2026-103",
@@ -63,6 +77,71 @@
     "total": 2550,
     "status": "Shipped",
     "step": 2,
-    "createdAt": "2026-10-20 11:10"
+    "createdAt": "2026-10-20 11:10",
+    "source": "direct",
+    "vendorSource": "SifatDropShipping Store",
+    "vendorId": null,
+    "vendorOrderId": null,
+    "userId": null,
+    "email": null,
+    "paymentMethod": "Cash on Delivery"
+  },
+  {
+    "orderId": "JSK-2026-104",
+    "customerName": "Sabbir Hossain",
+    "phone": "01555-123456",
+    "city": "Sylhet",
+    "address": "Zindabazar, Sylhet Sadar",
+    "items": [
+      {
+        "id": 5,
+        "title": "Korean Glass Skin Niacinamide 10% Glow Serum",
+        "qty": 2,
+        "price": 980
+      }
+    ],
+    "subtotal": 1960,
+    "discount": 0,
+    "shipping": 120,
+    "total": 2080,
+    "status": "Order Placed",
+    "step": 1,
+    "createdAt": "2026-10-20 13:35",
+    "source": "vendor",
+    "vendorSource": "Chattogram Fashion Mart",
+    "vendorId": "v_1002",
+    "vendorOrderId": "CFM-5521",
+    "userId": null,
+    "email": null,
+    "paymentMethod": "Cash on Delivery"
+  },
+  {
+    "orderId": "JSK-2026-105",
+    "customerName": "Mitu Akter",
+    "phone": "01644-908070",
+    "city": "Dhaka",
+    "address": "Mirpur 10, Dhaka",
+    "items": [
+      {
+        "id": 1,
+        "title": "ANC Pro Max Wireless Earbuds (Sifat Special Edition)",
+        "qty": 1,
+        "price": 1850
+      }
+    ],
+    "subtotal": 1850,
+    "discount": 0,
+    "shipping": 60,
+    "total": 1910,
+    "status": "Shipped",
+    "step": 2,
+    "createdAt": "2026-10-20 15:02",
+    "source": "vendor",
+    "vendorSource": "Dhaka Gadget Hub",
+    "vendorId": "v_1001",
+    "vendorOrderId": "DGH-88431",
+    "userId": null,
+    "email": null,
+    "paymentMethod": "Cash on Delivery"
   }
 ]

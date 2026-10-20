@@ -75,9 +75,12 @@
         <a href="#tracking-section" class="hidden sm:inline-flex items-center gap-1.5 text-sm font-bold text-slate-700 hover:text-blue-600 transition">
           <i class="fa-solid fa-truck-fast text-blue-600"></i> Track Order
         </a>
-        <a href="#dashboard-section" class="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full text-xs font-extrabold bg-slate-100 hover:bg-blue-50 text-slate-800 hover:text-blue-600 transition">
+        <a href="#dashboard-section" onclick="return openMerchantPortal(event)" class="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full text-xs font-extrabold bg-slate-100 hover:bg-blue-50 text-slate-800 hover:text-blue-600 transition">
           <i class="fa-solid fa-chart-pie text-indigo-600"></i> Merchant Portal
         </a>
+
+        <!-- Auth Area (rendered by auth.js: Login button OR user menu) -->
+        <div id="auth-area" class="relative"></div>
 
         <!-- Live Cart Button -->
         <button id="header-cart-btn" onclick="toggleCartDrawer(true)"
@@ -256,6 +259,60 @@
     </div>
   </section>
 
+  <!-- My Profile & Order History (visible only when logged in) -->
+  <section id="profile-section" class="hidden py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal-up">
+    <div class="bg-white rounded-[2.2rem] p-6 md:p-10 border border-slate-200 shadow-xl">
+      <div class="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-slate-100">
+        <div class="flex items-center gap-3.5">
+          <div id="profile-avatar" class="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-600 text-white text-2xl font-extrabold flex items-center justify-center shadow-lg"></div>
+          <div>
+            <span class="text-xs font-extrabold uppercase tracking-widest text-blue-600">My Account</span>
+            <h2 class="text-2xl font-extrabold text-slate-900">My Profile &amp; Order History</h2>
+            <p id="profile-email-line" class="text-xs text-slate-500 font-semibold"></p>
+          </div>
+        </div>
+        <button onclick="handleLogout()" class="px-4 py-2 rounded-full bg-slate-100 hover:bg-rose-50 hover:text-rose-600 text-xs font-bold text-slate-700 transition">
+          <i class="fa-solid fa-right-from-bracket mr-1.5"></i>Log out
+        </button>
+      </div>
+
+      <div class="grid lg:grid-cols-12 gap-8 mt-7">
+        <!-- Profile details -->
+        <div class="lg:col-span-4 space-y-5">
+          <div class="grid grid-cols-2 gap-3">
+            <div class="p-4 rounded-2xl bg-slate-900 text-white">
+              <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Orders</span>
+              <p id="profile-order-count" class="text-2xl font-extrabold mt-1">0</p>
+            </div>
+            <div class="p-4 rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-700 text-white">
+              <span class="text-[11px] font-bold uppercase tracking-wider text-blue-100">Total Spent</span>
+              <p id="profile-total-spent" class="text-2xl font-extrabold mt-1">৳0</p>
+            </div>
+          </div>
+          <form onsubmit="saveProfile(event)" class="bg-slate-50 p-5 rounded-3xl border border-slate-200/80 space-y-3">
+            <h3 class="text-base font-extrabold text-slate-800">Delivery Details</h3>
+            <input id="prof-name" type="text" required placeholder="Full name" class="w-full px-3.5 py-2.5 rounded-xl bg-white border border-slate-200 text-xs font-semibold" />
+            <input id="prof-phone" type="tel" placeholder="Phone (017XXXXXXXX)" class="w-full px-3.5 py-2.5 rounded-xl bg-white border border-slate-200 text-xs font-semibold" />
+            <select id="prof-city" class="w-full px-3 py-2.5 rounded-xl bg-white border border-slate-200 text-xs font-semibold">
+              <option value="Dhaka">Inside Dhaka</option><option value="Chattogram">Chattogram</option><option value="Sylhet">Sylhet</option>
+              <option value="Rajshahi">Rajshahi</option><option value="Khulna">Khulna</option><option value="Other District">Other District</option>
+            </select>
+            <textarea id="prof-address" rows="2" placeholder="Default delivery address" class="w-full px-3.5 py-2.5 rounded-xl bg-white border border-slate-200 text-xs font-semibold"></textarea>
+            <button type="submit" class="w-full py-3 rounded-xl bg-slate-900 hover:bg-blue-600 text-white font-bold text-xs transition shadow-md">
+              <i class="fa-solid fa-floppy-disk mr-1"></i> Save &amp; Auto-fill Checkout
+            </button>
+          </form>
+        </div>
+
+        <!-- Order history -->
+        <div class="lg:col-span-8">
+          <h3 class="text-base font-extrabold text-slate-800 mb-3">Your Past Orders <span class="text-xs font-semibold text-slate-400">(placed while logged in as your email)</span></h3>
+          <div id="profile-orders" class="space-y-4"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Live Order Tracking Simulator Section -->
   <section id="tracking-section" class="py-14 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 reveal-up">
     <div class="bg-white rounded-[2.2rem] p-8 md:p-10 border border-slate-200/80 shadow-xl">
@@ -265,7 +322,7 @@
         </span>
         <h2 class="text-3xl font-extrabold text-slate-900 mt-2">Live Order Tracking Simulator</h2>
         <p class="text-slate-500 text-sm mt-1">
-          Enter your Order ID below (try <strong class="text-slate-800">JSK-2026-101</strong>, <strong class="text-slate-800">JSK-2026-102</strong>, or any new order you place).
+          Enter your Order ID below (try <strong class="text-slate-800">JSK-2026-101</strong>, <strong class="text-slate-800">JSK-2026-102</strong>, or any new order you place). Status updates live.
         </p>
       </div>
 
@@ -283,34 +340,42 @@
     </div>
   </section>
 
-  <!-- Full-Stack Merchant Admin Dashboard Section -->
-  <section id="dashboard-section" class="py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal-up">
+  <!-- Full-Stack Merchant Admin Dashboard Section (admin only) -->
+  <section id="dashboard-section" class="hidden py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal-up">
     <div class="bg-white rounded-[2.2rem] p-6 md:p-10 border border-slate-200 shadow-xl">
       <div class="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-slate-100">
         <div class="flex items-center gap-3.5">
           <img src="assets/images/sifat.jpg" alt="Jack Sifat Khan"
             class="jsk-founder-photo w-14 h-14 rounded-2xl object-cover ring-2 ring-blue-600" />
           <div>
-            <div class="flex items-center gap-2">
-              <h2 class="text-2xl font-extrabold text-slate-900">Jack Sifat Khan — Merchant Dashboard</h2>
+            <div class="flex flex-wrap items-center gap-2">
+              <h2 class="text-2xl font-extrabold text-slate-900">Jack Sifat Khan — Master Dashboard</h2>
               <span id="backend-status-badge"></span>
             </div>
-            <p class="text-xs text-slate-500 font-semibold">Live Store Analytics, Order Status Controls &amp; Inventory Publisher</p>
+            <p class="text-xs text-slate-500 font-semibold">Live Analytics, Order Controls, Product Manager &amp; Master Sync (Vendor Orders)</p>
           </div>
         </div>
+        <span id="dash-live-pill" class="hidden px-3 py-1.5 rounded-full bg-emerald-50 text-emerald-700 text-[11px] font-extrabold border border-emerald-200">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping inline-block mr-1.5"></span>Live — auto-refreshing every 10s
+        </span>
       </div>
 
       <!-- KPI Cards -->
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 my-7">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 my-7">
         <div class="p-6 rounded-3xl bg-gradient-to-br from-blue-600 to-indigo-700 text-white shadow-lg">
           <span class="text-xs font-bold uppercase tracking-wider text-blue-100">Total Store Revenue (BDT)</span>
           <h3 id="dash-total-sales" class="text-3xl font-extrabold mt-2">৳0</h3>
-          <p class="text-[11px] text-blue-200 mt-1"><i class="fa-solid fa-arrow-trend-up mr-1"></i>+24.8% vs last week</p>
+          <p id="dash-sales-split" class="text-[11px] text-blue-200 mt-1"><i class="fa-solid fa-arrow-trend-up mr-1"></i>Direct + Vendor orders</p>
         </div>
         <div class="p-6 rounded-3xl bg-slate-900 text-white shadow-lg">
           <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Total COD Orders</span>
           <h3 id="dash-total-orders" class="text-3xl font-extrabold mt-2">0</h3>
           <p class="text-[11px] text-emerald-400 mt-1"><i class="fa-solid fa-circle-check mr-1"></i>Synced with Live Tracker</p>
+        </div>
+        <div class="p-6 rounded-3xl bg-violet-600 text-white shadow-lg">
+          <span class="text-xs font-bold uppercase tracking-wider text-violet-100">Vendor-Synced Orders</span>
+          <h3 id="dash-vendor-orders" class="text-3xl font-extrabold mt-2">0</h3>
+          <p id="dash-vendor-rev" class="text-[11px] text-violet-100 mt-1"><i class="fa-solid fa-store mr-1"></i>via Master Sync</p>
         </div>
         <div class="p-6 rounded-3xl bg-emerald-600 text-white shadow-lg">
           <span class="text-xs font-bold uppercase tracking-wider text-emerald-100">Average Order Value</span>
@@ -319,53 +384,127 @@
         </div>
       </div>
 
-      <div class="grid lg:grid-cols-12 gap-8">
-        <!-- Recent Orders Table with Live Status Dropdown -->
-        <div class="lg:col-span-8">
-          <h3 class="text-base font-extrabold text-slate-800 mb-3">Recent Orders (Change Status to Test Live Tracker)</h3>
-          <div class="overflow-x-auto rounded-2xl border border-slate-200">
-            <table class="w-full text-left border-collapse">
-              <thead>
-                <tr class="bg-slate-100 text-[11px] font-extrabold uppercase text-slate-600">
-                  <th class="py-3 px-4">Order ID</th>
-                  <th class="py-3 px-4">Customer</th>
-                  <th class="py-3 px-4">City</th>
-                  <th class="py-3 px-4">Total (৳)</th>
-                  <th class="py-3 px-4">Live Status</th>
-                </tr>
-              </thead>
-              <tbody id="dash-orders-tbody"></tbody>
-            </table>
+      <!-- Dashboard Tabs -->
+      <div class="flex flex-wrap items-center gap-2 mb-6" id="dash-tabs">
+        <button data-tab="orders" onclick="switchDashTab('orders')" class="dash-tab px-5 py-2.5 rounded-full text-sm font-bold transition-all"><i class="fa-solid fa-receipt mr-1.5"></i>Orders</button>
+        <button data-tab="products" onclick="switchDashTab('products')" class="dash-tab px-5 py-2.5 rounded-full text-sm font-bold transition-all"><i class="fa-solid fa-boxes-stacked mr-1.5"></i>Product Manager</button>
+        <button data-tab="vendors" onclick="switchDashTab('vendors')" class="dash-tab px-5 py-2.5 rounded-full text-sm font-bold transition-all"><i class="fa-solid fa-link mr-1.5"></i>Master Sync (Vendors)</button>
+      </div>
+
+      <!-- TAB: Orders -->
+      <div id="dash-pane-orders" class="dash-pane">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
+          <h3 class="text-base font-extrabold text-slate-800">All Orders (Direct + Vendor) — Change Status to Test Live Tracker</h3>
+          <select id="dash-source-filter" onchange="setSourceFilter(this.value)" class="px-3.5 py-2 rounded-xl bg-white border border-slate-200 text-xs font-bold text-slate-800">
+            <option value="all">All Sources</option>
+            <option value="direct">Direct Store only</option>
+            <option value="vendor">All Vendors</option>
+          </select>
+        </div>
+        <div class="overflow-x-auto rounded-2xl border border-slate-200">
+          <table class="w-full text-left border-collapse min-w-[760px]">
+            <thead>
+              <tr class="bg-slate-100 text-[11px] font-extrabold uppercase text-slate-600">
+                <th class="py-3 px-4">Order ID</th>
+                <th class="py-3 px-4">Customer</th>
+                <th class="py-3 px-4">City</th>
+                <th class="py-3 px-4">Vendor Source</th>
+                <th class="py-3 px-4">Total (৳)</th>
+                <th class="py-3 px-4">Live Status</th>
+              </tr>
+            </thead>
+            <tbody id="dash-orders-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- TAB: Product Manager -->
+      <div id="dash-pane-products" class="dash-pane hidden">
+        <div class="grid lg:grid-cols-12 gap-8">
+          <div class="lg:col-span-8">
+            <div class="flex items-center justify-between mb-3">
+              <h3 class="text-base font-extrabold text-slate-800">Live Storefront Products <span id="pm-count" class="text-xs font-semibold text-slate-400"></span></h3>
+            </div>
+            <div id="pm-list" class="space-y-2.5 max-h-[560px] overflow-y-auto pr-1"></div>
+          </div>
+          <div class="lg:col-span-4 bg-slate-50 p-5 rounded-3xl border border-slate-200/80 self-start">
+            <h3 class="text-base font-extrabold text-slate-800 mb-1">Add New Product to Store</h3>
+            <p class="text-xs text-slate-500 mb-4">Publishes directly to Node.js `/api/products` &amp; Product Grid.</p>
+            <form onsubmit="handleAddNewProduct(event)" class="space-y-3">
+              <input id="new-prod-title" type="text" required placeholder="Product Title"
+                class="w-full px-3.5 py-2.5 rounded-xl bg-white border border-slate-200 text-xs font-semibold" />
+              <div class="grid grid-cols-2 gap-2.5">
+                <select id="new-prod-cat" class="px-3 py-2.5 rounded-xl bg-white border border-slate-200 text-xs font-semibold">
+                  <option value="Gadgets">Gadgets</option>
+                  <option value="Fashion">Fashion</option>
+                  <option value="Beauty">Beauty</option>
+                  <option value="Home & Living">Home &amp; Living</option>
+                  <option value="Fitness">Fitness</option>
+                </select>
+                <input id="new-prod-price" type="number" min="1" required placeholder="Price in ৳ (e.g. 1490)"
+                  class="px-3.5 py-2.5 rounded-xl bg-white border border-slate-200 text-xs font-semibold" />
+              </div>
+              <div class="grid grid-cols-2 gap-2.5">
+                <input id="new-prod-orig" type="number" min="1" placeholder="Original ৳ (e.g. 2200)"
+                  class="px-3.5 py-2.5 rounded-xl bg-white border border-slate-200 text-xs font-semibold" />
+                <input id="new-prod-stock" type="number" min="0" placeholder="Stock (25)"
+                  class="px-3.5 py-2.5 rounded-xl bg-white border border-slate-200 text-xs font-semibold" />
+              </div>
+              <input id="new-prod-img" type="url" placeholder="Image URL (optional)"
+                class="w-full px-3.5 py-2.5 rounded-xl bg-white border border-slate-200 text-xs font-semibold" />
+              <textarea id="new-prod-desc" rows="2" placeholder="Short description (optional)"
+                class="w-full px-3.5 py-2.5 rounded-xl bg-white border border-slate-200 text-xs font-semibold"></textarea>
+              <button type="submit"
+                class="w-full py-3 rounded-xl bg-slate-900 hover:bg-blue-600 text-white font-bold text-xs transition shadow-md">
+                <i class="fa-solid fa-plus mr-1"></i> Publish Product as Jack Sifat Khan
+              </button>
+            </form>
           </div>
         </div>
+      </div>
 
-        <!-- Add New Product to Backend API -->
-        <div class="lg:col-span-4 bg-slate-50 p-5 rounded-3xl border border-slate-200/80">
-          <h3 class="text-base font-extrabold text-slate-800 mb-1">Add New Product to Store</h3>
-          <p class="text-xs text-slate-500 mb-4">Publishes directly to Node.js `/api/products` &amp; Product Grid.</p>
-          <form onsubmit="handleAddNewProduct(event)" class="space-y-3">
-            <input id="new-prod-title" type="text" required placeholder="Product Title"
-              class="w-full px-3.5 py-2.5 rounded-xl bg-white border border-slate-200 text-xs font-semibold" />
-            <div class="grid grid-cols-2 gap-2.5">
-              <select id="new-prod-cat" class="px-3 py-2.5 rounded-xl bg-white border border-slate-200 text-xs font-semibold">
-                <option value="Gadgets">Gadgets</option>
-                <option value="Fashion">Fashion</option>
-                <option value="Beauty">Beauty</option>
-                <option value="Home & Living">Home &amp; Living</option>
-                <option value="Fitness">Fitness</option>
-              </select>
-              <input id="new-prod-price" type="number" required placeholder="Price in ৳ (e.g. 1490)"
-                class="px-3.5 py-2.5 rounded-xl bg-white border border-slate-200 text-xs font-semibold" />
+      <!-- TAB: Master Sync (Vendors) -->
+      <div id="dash-pane-vendors" class="dash-pane hidden">
+        <div class="grid lg:grid-cols-12 gap-8">
+          <div class="lg:col-span-8 space-y-6">
+            <div class="p-5 rounded-3xl bg-slate-900 text-white">
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <span class="text-xs font-extrabold uppercase tracking-widest text-violet-300"><i class="fa-solid fa-link mr-1.5"></i>Master Sync Webhook Endpoint</span>
+                <button onclick="copyText(document.getElementById('webhook-url').textContent, 'Webhook URL copied!')" class="text-[11px] bg-white/10 hover:bg-white/20 px-3 py-1 rounded-full font-bold transition"><i class="fa-regular fa-copy mr-1"></i>Copy</button>
+              </div>
+              <code id="webhook-url" class="block mt-2 text-sm font-bold text-emerald-300 break-all">POST /api/master-sync/webhook</code>
+              <p class="text-[11px] text-slate-400 mt-2">Each vendor store sends orders here with its own key in the <code class="text-amber-300">X-Master-Sync-Key</code> header. Orders land in the Orders tab tagged with the vendor's name.</p>
+              <details class="mt-3">
+                <summary class="text-[11px] font-bold text-slate-300 cursor-pointer">Show sample request (cURL)</summary>
+                <pre id="webhook-sample" class="mt-2 text-[11px] leading-relaxed bg-black/40 rounded-xl p-3 overflow-x-auto text-slate-200"></pre>
+              </details>
             </div>
-            <input id="new-prod-orig" type="number" placeholder="Original Price in ৳ (e.g. 2200)"
-              class="w-full px-3.5 py-2.5 rounded-xl bg-white border border-slate-200 text-xs font-semibold" />
-            <input id="new-prod-img" type="url" placeholder="Image URL (optional)"
-              class="w-full px-3.5 py-2.5 rounded-xl bg-white border border-slate-200 text-xs font-semibold" />
-            <button type="submit"
-              class="w-full py-3 rounded-xl bg-slate-900 hover:bg-blue-600 text-white font-bold text-xs transition shadow-md">
-              <i class="fa-solid fa-plus mr-1"></i> Publish Product as Jack Sifat Khan
-            </button>
-          </form>
+
+            <div>
+              <h3 class="text-base font-extrabold text-slate-800 mb-3">Connected Vendor Stores</h3>
+              <div id="vendor-list" class="space-y-3"></div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-4 self-start space-y-4">
+            <div class="bg-slate-50 p-5 rounded-3xl border border-slate-200/80">
+              <h3 class="text-base font-extrabold text-slate-800 mb-1">Connect a New Vendor</h3>
+              <p class="text-xs text-slate-500 mb-4">Creates a private API key for their store.</p>
+              <form onsubmit="handleCreateVendor(event)" class="space-y-3">
+                <input id="new-vendor-name" type="text" required minlength="2" placeholder="Vendor / store name"
+                  class="w-full px-3.5 py-2.5 rounded-xl bg-white border border-slate-200 text-xs font-semibold" />
+                <button type="submit" class="w-full py-3 rounded-xl bg-violet-600 hover:bg-violet-700 text-white font-bold text-xs transition shadow-md">
+                  <i class="fa-solid fa-key mr-1"></i> Generate Vendor Key
+                </button>
+              </form>
+            </div>
+            <div id="new-key-box" class="hidden p-4 rounded-2xl bg-amber-50 border border-amber-300">
+              <p class="text-[11px] font-extrabold uppercase text-amber-700"><i class="fa-solid fa-triangle-exclamation mr-1"></i>Copy now — shown only once</p>
+              <p id="new-key-vendor" class="text-xs font-bold text-slate-800 mt-1"></p>
+              <code id="new-key-value" class="block mt-1.5 p-2 rounded-lg bg-white border border-amber-200 text-[11px] font-bold text-slate-800 break-all"></code>
+              <button onclick="copyText(document.getElementById('new-key-value').textContent, 'Vendor key copied!')" class="mt-2 w-full py-2 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold transition"><i class="fa-regular fa-copy mr-1"></i>Copy Key</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -428,6 +567,61 @@
     </div>
   </aside>
 
+  <!-- Login / Register Modal -->
+  <div id="auth-modal" class="fixed inset-0 bg-slate-950/60 backdrop-blur-xs z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-md w-full max-h-[92vh] overflow-y-auto p-6 md:p-8 relative shadow-2xl">
+      <button onclick="closeAuthModal()" aria-label="Close" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <div class="flex items-center gap-3 mb-5">
+        <img src="assets/images/sifat.jpg" alt="" class="jsk-founder-photo w-11 h-11 rounded-xl object-cover ring-2 ring-blue-600" />
+        <div>
+          <h3 id="auth-title" class="text-xl font-extrabold text-slate-900">Welcome back</h3>
+          <p id="auth-sub" class="text-xs text-slate-500">Log in to see your order history &amp; checkout faster</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 gap-1.5 p-1 rounded-2xl bg-slate-100 mb-5">
+        <button id="auth-tab-login" onclick="switchAuthTab('login')" class="py-2.5 rounded-xl text-sm font-bold transition">Login</button>
+        <button id="auth-tab-register" onclick="switchAuthTab('register')" class="py-2.5 rounded-xl text-sm font-bold transition">Register</button>
+      </div>
+
+      <div id="auth-offline-note" class="hidden mb-4 p-3 rounded-xl bg-amber-50 border border-amber-200 text-[11px] font-semibold text-amber-800">
+        <i class="fa-solid fa-triangle-exclamation mr-1"></i>Accounts need the Node server. Run <code>npm start</code> and open <code>http://localhost:3000</code>. You can still order as a guest.
+      </div>
+      <div id="auth-merchant-note" class="hidden mb-4 p-3 rounded-xl bg-indigo-50 border border-indigo-200 text-[11px] font-semibold text-indigo-800">
+        <i class="fa-solid fa-chart-pie mr-1"></i>Merchant Dashboard is for Jack Sifat Khan's admin account. Please log in to continue.
+      </div>
+
+      <form id="auth-form" onsubmit="submitAuth(event)" class="space-y-3.5" novalidate>
+        <div id="auth-field-name" class="hidden">
+          <label class="text-xs font-bold text-slate-700">Full Name *</label>
+          <input id="auth-name" type="text" autocomplete="name" placeholder="e.g. Rahim Uddin" class="w-full mt-1 px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm" />
+        </div>
+        <div>
+          <label class="text-xs font-bold text-slate-700">Email *</label>
+          <input id="auth-email" type="email" autocomplete="email" placeholder="you@example.com" class="w-full mt-1 px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm" />
+        </div>
+        <div id="auth-field-phone" class="hidden">
+          <label class="text-xs font-bold text-slate-700">Phone <span class="font-normal text-slate-400">(optional)</span></label>
+          <input id="auth-phone" type="tel" autocomplete="tel" placeholder="017XXXXXXXX" class="w-full mt-1 px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm" />
+        </div>
+        <div>
+          <label class="text-xs font-bold text-slate-700">Password * <span id="auth-pass-hint" class="hidden font-normal text-slate-400">(min 8 characters)</span></label>
+          <div class="relative">
+            <input id="auth-password" type="password" autocomplete="current-password" placeholder="••••••••" class="w-full mt-1 pl-4 pr-11 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm" />
+            <button type="button" onclick="toggleAuthPassword()" aria-label="Show or hide password" class="absolute right-3 top-1/2 -translate-y-1/2 mt-0.5 text-slate-400 hover:text-blue-600"><i id="auth-eye" class="fa-regular fa-eye"></i></button>
+          </div>
+        </div>
+        <p id="auth-error" class="hidden text-xs font-bold text-rose-600 bg-rose-50 border border-rose-200 rounded-xl px-3 py-2"></p>
+        <button id="auth-submit" type="submit" class="btn-shine w-full py-3.5 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-extrabold text-sm shadow-lg shadow-blue-600/30 disabled:opacity-60">
+          Log In
+        </button>
+      </form>
+      <button onclick="closeAuthModal()" class="mt-4 w-full text-xs font-bold text-slate-500 hover:text-blue-600">Continue as guest <i class="fa-solid fa-arrow-right ml-1"></i></button>
+    </div>
+  </div>
+
   <!-- Quick View Modal -->
   <div id="quickview-modal" class="fixed inset-0 bg-slate-950/60 backdrop-blur-xs z-50 hidden flex items-center justify-center p-4">
     <div class="bg-white rounded-3xl max-w-2xl w-full p-6 md:p-8 relative shadow-2xl">
@@ -440,7 +634,7 @@
 
   <!-- Cash on Delivery Checkout Modal -->
   <div id="checkout-modal" class="fixed inset-0 bg-slate-950/60 backdrop-blur-xs z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-white rounded-3xl max-w-lg w-full p-6 md:p-8 relative shadow-2xl">
+    <div class="bg-white rounded-3xl max-w-lg w-full max-h-[92vh] overflow-y-auto p-6 md:p-8 relative shadow-2xl">
       <button onclick="closeCheckoutModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center">
         <i class="fa-solid fa-xmark"></i>
       </button>
@@ -451,6 +645,8 @@
           <p class="text-xs text-slate-500">Pay only when the parcel reaches your doorstep</p>
         </div>
       </div>
+
+      <div id="checkout-identity" class="mb-4"></div>
 
       <form onsubmit="submitCODOrder(event)" class="space-y-3.5">
         <div>
@@ -478,6 +674,11 @@
           </div>
         </div>
         <div>
+          <label class="text-xs font-bold text-slate-700">Email <span class="font-normal text-slate-400">(optional — for order updates)</span></label>
+          <input id="cust-email" type="email" placeholder="you@example.com"
+            class="w-full mt-1 px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm" />
+        </div>
+        <div>
           <label class="text-xs font-bold text-slate-700">Full Delivery Address *</label>
           <textarea id="cust-address" rows="2" required placeholder="House, Road, Area, Landmark..."
             class="w-full mt-1 px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm"></textarea>
@@ -486,8 +687,8 @@
           <span class="text-xs font-bold text-blue-900">Total Cash on Delivery Payable:</span>
           <span id="checkout-payable-total" class="text-xl font-extrabold text-blue-600">৳0</span>
         </div>
-        <button type="submit"
-          class="btn-shine w-full py-3.5 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-sm shadow-lg shadow-emerald-600/25">
+        <button id="checkout-submit-btn" type="submit"
+          class="btn-shine w-full py-3.5 rounded-2xl bg-emerald-600 hover:bg-emerald-700 disabled:opacity-60 text-white font-extrabold text-sm shadow-lg shadow-emerald-600/25">
           <i class="fa-solid fa-circle-check mr-1.5"></i> Confirm Order (Cash on Delivery)
         </button>
       </form>
@@ -507,6 +708,7 @@
         <span id="confirmed-order-id" class="text-2xl font-extrabold text-blue-600">#JSK-2026-000</span>
         <p class="text-xs font-bold text-slate-700 mt-1">COD Payable: <span id="confirmed-total"></span></p>
       </div>
+      <p id="confirmed-account-note" class="text-[11px] text-slate-500 -mt-2 mb-4"></p>
       <button onclick="document.getElementById('order-success-modal').classList.add('hidden'); document.getElementById('tracking-section').scrollIntoView({behavior:'smooth'});"
         class="w-full py-3 rounded-2xl bg-blue-600 text-white font-bold text-xs">
         Track My Order Live
@@ -538,11 +740,15 @@
           <p class="text-xs text-slate-400">Founded &amp; Owned by <strong class="text-white">Jack Sifat Khan</strong> • All prices in BDT (৳)</p>
         </div>
       </div>
-      <p class="text-xs text-slate-500">© 2026 SifatDropShipping by Jack Sifat Khan. Full-Stack Node.js + Express Edition.</p>
+      <p class="text-xs text-slate-500">© 2026 SifatDropShipping by Jack Sifat Khan. Full-Stack Node.js + Express · Master Sync Edition.</p>
     </div>
   </footer>
 
   <!-- Main Frontend Application Script -->
+  <script src="js/founder-photo.js"></script>
+  <script src="js/fallback-data.js"></script>
   <script src="js/app.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/admin.js"></script>
 </body>
 </html>

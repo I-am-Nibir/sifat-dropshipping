@@ -1,7 +1,7 @@
 {
   "name": "sifat-dropshipping-fullstack",
-  "version": "2.0.0",
-  "description": "Full-Stack Animated E-Commerce & Dropshipping Web Application for Jack Sifat Khan (SifatDropShipping)",
+  "version": "3.0.0",
+  "description": "Full-Stack Animated E-Commerce & Master Sync Dropshipping Platform for Jack Sifat Khan (SifatDropShipping)",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",

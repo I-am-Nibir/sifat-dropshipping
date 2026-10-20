@@ -156,3 +156,41 @@ html {
 ::-webkit-scrollbar-thumb:hover {
   background: #64748b;
 }
+
+/* ==========================================================================
+   v3 additions: dashboard tabs, new-order flash, auth modal polish
+   ========================================================================== */
+.dash-tab {
+  background: #fff;
+  color: #475569;
+  border: 1px solid #e2e8f0;
+}
+.dash-tab:hover { background: #eff6ff; color: #2563eb; }
+.dash-tab.active {
+  background: linear-gradient(90deg, #2563eb, #4f46e5);
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 10px 22px -8px rgba(37, 99, 235, 0.55);
+  transform: scale(1.04);
+}
+
+@keyframes rowFlash {
+  0% { background: rgba(124, 58, 237, 0.18); }
+  100% { background: transparent; }
+}
+.row-flash { animation: rowFlash 2.2s ease-out 1; }
+
+#auth-modal > div, #checkout-modal > div, #quickview-modal > div, #order-success-modal > div {
+  animation: modalPop 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@keyframes modalPop {
+  from { opacity: 0; transform: translateY(14px) scale(0.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-blob, .animate-float, .marquee-track, .founder-frame-glow, .shimmer-name { animation: none; }
+}
+
+/* Keep anchored sections clear of the sticky header */
+section[id] { scroll-margin-top: 96px; }
