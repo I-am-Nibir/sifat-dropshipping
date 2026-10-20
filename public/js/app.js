@@ -196,10 +196,10 @@ function updateBackendBadge(isOnline) {
   const badge = document.getElementById('backend-status-badge');
   if (!badge) return;
   if (isOnline) {
-    badge.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping inline-block mr-1.5"></span>Full-Stack Node API Live`;
+    badge.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping inline-block mr-1.5"></span>Store Live`;
     badge.className = "px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/15 text-emerald-700 border border-emerald-500/30 flex items-center";
   } else {
-    badge.innerHTML = `<span class="w-2 h-2 rounded-full bg-amber-400 inline-block mr-1.5"></span>Standalone Browser Mode`;
+    badge.innerHTML = `<span class="w-2 h-2 rounded-full bg-amber-400 inline-block mr-1.5"></span>Demo Mode`;
     badge.className = "px-3 py-1 rounded-full text-xs font-semibold bg-amber-500/15 text-amber-700 border border-amber-500/30 flex items-center";
   }
 }

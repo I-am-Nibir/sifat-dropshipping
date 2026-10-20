@@ -352,7 +352,7 @@
               <h2 class="text-2xl font-extrabold text-slate-900">Jack Sifat Khan — Master Dashboard</h2>
               <span id="backend-status-badge"></span>
             </div>
-            <p class="text-xs text-slate-500 font-semibold">Live Analytics, Order Controls, Product Manager &amp; Master Sync (Vendor Orders)</p>
+            <p class="text-xs text-slate-500 font-semibold">Orders, products &amp; vendor stores</p>
           </div>
         </div>
         <span id="dash-live-pill" class="hidden px-3 py-1.5 rounded-full bg-emerald-50 text-emerald-700 text-[11px] font-extrabold border border-emerald-200">
@@ -370,7 +370,7 @@
         <div class="p-6 rounded-3xl bg-slate-900 text-white shadow-lg">
           <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Total COD Orders</span>
           <h3 id="dash-total-orders" class="text-3xl font-extrabold mt-2">0</h3>
-          <p class="text-[11px] text-emerald-400 mt-1"><i class="fa-solid fa-circle-check mr-1"></i>Synced with Live Tracker</p>
+          <p class="text-[11px] text-emerald-400 mt-1"><i class="fa-solid fa-circle-check mr-1"></i>Cash on Delivery</p>
         </div>
         <div class="p-6 rounded-3xl bg-violet-600 text-white shadow-lg">
           <span class="text-xs font-bold uppercase tracking-wider text-violet-100">Vendor-Synced Orders</span>
@@ -380,7 +380,7 @@
         <div class="p-6 rounded-3xl bg-emerald-600 text-white shadow-lg">
           <span class="text-xs font-bold uppercase tracking-wider text-emerald-100">Average Order Value</span>
           <h3 id="dash-avg-order" class="text-3xl font-extrabold mt-2">৳0</h3>
-          <p class="text-[11px] text-emerald-100 mt-1"><i class="fa-solid fa-crown mr-1"></i>SifatDropShipping VIP Tier</p>
+          <p class="text-[11px] text-emerald-100 mt-1"><i class="fa-solid fa-crown mr-1"></i>Per order</p>
         </div>
       </div>
 
@@ -394,7 +394,7 @@
       <!-- TAB: Orders -->
       <div id="dash-pane-orders" class="dash-pane">
         <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
-          <h3 class="text-base font-extrabold text-slate-800">All Orders (Direct + Vendor) — Change Status to Test Live Tracker</h3>
+          <h3 class="text-base font-extrabold text-slate-800">All Orders (Direct + Vendor)</h3>
           <select id="dash-source-filter" onchange="setSourceFilter(this.value)" class="px-3.5 py-2 rounded-xl bg-white border border-slate-200 text-xs font-bold text-slate-800">
             <option value="all">All Sources</option>
             <option value="direct">Direct Store only</option>
@@ -429,7 +429,7 @@
           </div>
           <div class="lg:col-span-4 bg-slate-50 p-5 rounded-3xl border border-slate-200/80 self-start">
             <h3 class="text-base font-extrabold text-slate-800 mb-1">Add New Product to Store</h3>
-            <p class="text-xs text-slate-500 mb-4">Publishes directly to Node.js `/api/products` &amp; Product Grid.</p>
+            <p class="text-xs text-slate-500 mb-4">Appears instantly on your storefront.</p>
             <form onsubmit="handleAddNewProduct(event)" class="space-y-3">
               <input id="new-prod-title" type="text" required placeholder="Product Title"
                 class="w-full px-3.5 py-2.5 rounded-xl bg-white border border-slate-200 text-xs font-semibold" />
@@ -737,10 +737,10 @@
         <img src="assets/images/sifat.jpg" class="jsk-founder-photo w-11 h-11 rounded-xl object-cover ring-2 ring-blue-500" />
         <div>
           <span class="text-white font-extrabold text-lg">SifatDropShipping</span>
-          <p class="text-xs text-slate-400">Founded &amp; Owned by <strong class="text-white">Jack Sifat Khan</strong> • All prices in BDT (৳)</p>
+          <p class="text-xs text-slate-400">Founded &amp; Owned by <strong class="text-white">Jack Sifat Khan</strong></p>
         </div>
       </div>
-      <p class="text-xs text-slate-500">© 2026 SifatDropShipping by Jack Sifat Khan. Full-Stack Node.js + Express · Master Sync Edition.</p>
+      <p class="text-xs text-slate-500">© 2026 SifatDropShipping by Jack Sifat Khan. All rights reserved.</p>
     </div>
   </footer>
 
